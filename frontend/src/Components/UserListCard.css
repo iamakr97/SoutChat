@@ -1,0 +1,48 @@
+.user {
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    gap: 0.5rem;
+    /* padding: 0.2rem;
+    background-color: transparent;
+    border-radius: 10px;
+    margin: 0.5rem 1rem; */
+}
+.user-image-container {
+    position: relative;
+}
+
+.user-image-container img {
+    height: 3rem;
+    width: 3rem;
+    border-radius: 50%;
+    border: 1px solid var(--blue-color);
+    display: block;
+    
+}
+
+.user-details h3 {
+    font-size: 1.2rem;
+    font-weight: 500;
+    margin: 0;
+    padding: 0;
+}
+
+.user-details p {
+    font-weight: 400;
+    font-size: 0.8rem;
+    margin: 0;
+    padding: 0;
+}
+
+.green-dot {
+    position: absolute;
+    top: 12px;
+    right: 0;
+    height: 6px;
+    width: 6px;
+    border-radius: 50%;
+    background-color: green;
+    transform: translate(50%, -50%);
+    z-index: 10;
+}

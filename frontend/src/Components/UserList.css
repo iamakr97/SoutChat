@@ -1,0 +1,124 @@
+.user-list-container {
+    display: block;
+    position: relative;
+}
+
+.user-list-container h2 {
+    text-align: center;
+}
+.user-list-container form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0.5rem 0;
+    gap: 0.5rem;
+}
+.user-list-container form input {
+    width: 75%;
+    display: block;
+    height: 1.5rem;
+    border-radius: 10px;
+    font-size: 1.1rem;
+    padding-left: 0.8rem;
+}
+.user-list-container form button {
+    display: block;
+    padding: 0.2rem;
+    border: none;
+    font-size: 1.3rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--blue-color);
+    color: white;
+    font-weight: 600;
+    cursor: pointer;
+    border-radius: 8px;
+}
+
+.setting-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.setting-container {
+    /* border: 1px solid red; */
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    padding: 0.3rem 0 0 0;
+}
+
+.setting-container button {
+    display: block;
+    padding: 0.3rem 1rem;
+    border-radius: 8px;
+    background-color: var(--blue-color);
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+.user-list {
+    width: 300px;
+    height: calc(100% - 7.5rem);
+    position: relative;
+    overflow-y: auto;
+}
+
+.user-list h2 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin: 0.5rem 0;
+    padding: 0;
+    color: black;
+    text-align: center;
+}
+
+.user-box {
+    position: relative;
+    /* overflow-y: auto; */
+}
+
+.user-box input[type="radio"] {
+    display: none;
+}
+
+.user-box input[type="radio"]+label {
+    display: block;
+    background-color: rgb(231, 231, 231);
+    padding: 0.2rem;
+    border-radius: 10px;
+    margin: 0.5rem 1rem;
+    cursor: pointer;
+}
+
+.user-box input[type="radio"]:checked+label {
+    background-color: var(--blue-color);
+    color: white;
+    display: block;
+
+}
+
+
+.user-list::-webkit-scrollbar {
+    width: 2px;
+    /* Width of the scrollbar */
+}
+
+.user-list::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    /* Color of the scrollbar track */
+}
+
+.user-list::-webkit-scrollbar-thumb {
+    background: #888;
+    /* Color of the scrollbar thumb */
+    border-radius: 5px;
+    /* Rounded corners for the thumb */
+}
+
+.user-list::-webkit-scrollbar-thumb:hover {
+    background: #d5d5d5;
+    /* Color of the thumb when hovered */
+}
