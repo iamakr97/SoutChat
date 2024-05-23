@@ -42,6 +42,6 @@ server.listen(PORT, () => {
 })
 
 
-// app.get('/', (req, res) => {
-//   res.send(`<h1>Hi App is Running baby...</h1>`);
-// });
+app.get('/', (req, res) => {
+  res.send(`<h1>Hi App is Running baby...</h1>`);
+});
