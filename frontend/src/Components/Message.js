@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import axios from 'axios';
 import { clearMessages, setMessages, setNewMessage } from '../redux/messagesSlice';
 import ButtonLoader from '../Components/ButtonLoader';
+import { clearSelectedUser } from '../redux/selectedUserSlice';
 
 
 function Message() {
@@ -58,7 +59,7 @@ function Message() {
         dispatch(setMessages(res.data.allConversation.messages));
       }).catch((error) => {
         console.log(error);
-      }).finally(()=>setChatLoading(false));
+      }).finally(() => setChatLoading(false));
   }
 
   useEffect(() => {
@@ -66,6 +67,10 @@ function Message() {
     fetchMessages();
   }, [receiverId]);
 
+  useEffect(() => {
+    dispatch(clearSelectedUser());
+  }, [])
+  
   useEffect(() => {
     const handleNewMessage = (newMessage) => {
       console.log('New message received:', newMessage);
