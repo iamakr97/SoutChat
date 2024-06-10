@@ -4,9 +4,13 @@ import { MdSend } from "react-icons/md";
 import { useDispatch, useSelector } from 'react-redux';
 import axios from 'axios';
 import { clearMessages, setMessages, setNewMessage } from '../redux/messagesSlice';
+import ButtonLoader from '../Components/ButtonLoader';
+
 
 function Message() {
   const dispatch = useDispatch();
+  const [loading, setLoading] = useState(true);
+  const [chatLoading, setChatLoading] = useState(true);
   const { socket } = useSelector(store => store.socket);
   const { allMessage } = useSelector(store => store.messages);
   const { token } = useSelector(store => store.auth);
@@ -21,6 +25,7 @@ function Message() {
     if (message === '') {
       return;
     }
+    setLoading(false);
     await axios.post(`${process.env.REACT_APP_SERVER_URL}/sendMessage/${receiverId}`,
       { message, token },
       {
@@ -30,19 +35,18 @@ function Message() {
         },
         withCredentials: true
       }).then((res) => {
-        // console.log(res.data.newMessage);
         setMessage('');
         dispatch(setNewMessage(res.data.newMessage));
       }).catch((error) => {
         console.log(error);
-      })
+      }).finally(() => setLoading(true));
   }
 
   async function fetchMessages() {
     if (!receiverId) {
       return;
     }
-    // console.log(receiverId);
+    setChatLoading(true);
     await axios.get(`${process.env.REACT_APP_SERVER_URL}/getMessage/${receiverId}`,
       {
         headers: {
@@ -51,18 +55,15 @@ function Message() {
         },
         withCredentials: true
       }).then((res) => {
-        // console.log(res.data.allConversation.messages);
         dispatch(setMessages(res.data.allConversation.messages));
-
       }).catch((error) => {
         console.log(error);
-      })
+      }).finally(()=>setChatLoading(false));
   }
 
   useEffect(() => {
     dispatch(clearMessages());
     fetchMessages();
-    // console.log(allMessage);
   }, [receiverId]);
 
   useEffect(() => {
@@ -93,25 +94,30 @@ function Message() {
             <h3>{name}</h3>
           </div>
           <div className="message-box">
-            <div className="message-box-container">
-              {(allMessage && allMessage.length > 0) &&
-                allMessage.map((mess) => {
-                  return <div key={mess._id}>
-                    {(mess.receiverId === receiverId)
-                      ?
-                      <div className="right-align">
-                        <span>{mess.message}</span>
-                      </div>
-                      :
-                      <div className="left-align">
-                        <span>{mess.message}</span>
-                      </div>
-                    }
-                  </div>
-                })
-              }
-              <div ref={messageEndRef} />
-            </div>
+            {chatLoading
+              ?
+              <h1 className='loading-chats'>Loading Chats...</h1>
+              :
+              <div className="message-box-container">
+                {(allMessage && allMessage.length > 0) &&
+                  allMessage.map((mess) => {
+                    return <div key={mess._id}>
+                      {(mess.receiverId === receiverId)
+                        ?
+                        <div className="right-align">
+                          <span>{mess.message}</span>
+                        </div>
+                        :
+                        <div className="left-align">
+                          <span>{mess.message}</span>
+                        </div>
+                      }
+                    </div>
+                  })
+                }
+                <div ref={messageEndRef} />
+              </div>
+            }
             <div className="send-msg-box">
               <form onSubmit={msgSubmitHandler}>
                 <input
@@ -121,7 +127,14 @@ function Message() {
                   onChange={messageInputHandler}
                   value={message}
                 />
-                <button type="submit"><MdSend id='send-btn' /></button>
+                <button type="submit">
+                  {loading
+                    ?
+                    <MdSend id='send-btn' />
+                    :
+                    <div className='send-btn-loader'><ButtonLoader /></div>
+                  }
+                </button>
               </form>
             </div>
           </div>

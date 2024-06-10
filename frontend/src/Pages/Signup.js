@@ -82,7 +82,10 @@ function Signup() {
 
     }
     return (
-        <div>
+        <>
+            <div className='sout-chat-ball'>
+                <h2>Sout-Chat</h2>
+            </div>
             <div className='signupFormContainer'>
                 <form onSubmit={signupHandler} className='form-container'>
                     <h2 className='form-heading'>Enter Details for Registration</h2>
@@ -133,7 +136,7 @@ function Signup() {
                     <p className='form-heading'>Already have an Account <Link to='/login'>Login</Link></p>
                 </form>
             </div>
-        </div>
+        </>
     )
 }
 

@@ -66,8 +66,8 @@
 }
 
 #send-btn {
-    height: 2rem;
-    width: 2rem;
+    height: 2.1rem;
+    width: 2.1rem;
     font-size: 1.5rem;
     background-color: rgb(79, 79, 255);
     color: white;
@@ -92,14 +92,17 @@
     border-radius: 12px;
     width: 90%;
 }
+
 .left-align span {
     background-color: white;
     color: black;
 }
-.right-align span{
+
+.right-align span {
     background-color: var(--blue-color);
     color: white;
 }
+
 .left-align {
     text-align: left;
 }
@@ -110,7 +113,7 @@
 
 .message-box-container {
     height: calc(100% - 3.2rem);
-   
+
     overflow-y: auto;
 }
 
@@ -134,4 +137,19 @@
 
 .message-box-container::-webkit-scrollbar-corner {
     background: transparent;
+}
+
+.send-btn-loader {
+    background-color: var(--blue-color);
+    height: 2.1rem;
+    width: 2.1rem;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.loading-chats {
+    padding-top: 20%;
+    text-align: center;
 }
