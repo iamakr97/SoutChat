@@ -153,3 +153,11 @@
     padding-top: 20%;
     text-align: center;
 }
+
+#message-attachment {
+    margin-left: -3rem;
+    margin-right: 0.5rem;
+    padding: 0.4rem;
+    background-color: white;
+    cursor: pointer;
+}

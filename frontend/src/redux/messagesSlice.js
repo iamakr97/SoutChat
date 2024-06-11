@@ -14,7 +14,7 @@ export const messagesSlice = createSlice({
         clearMessages: (state, action) => {
             state.allMessage = [];
         },
-        setNewMessage: (state, action)=>{
+        setNewMessage: (state, action) => {
             state.allMessage.push(action.payload);
         }
     }

@@ -5,7 +5,7 @@ import Signup from './Pages/Signup';
 import { useDispatch, useSelector } from 'react-redux';
 import { login } from './redux/authSlice';
 import { Route, Routes } from 'react-router-dom';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { jwtDecode } from "jwt-decode";
 import io from 'socket.io-client';
 import { setOnlienUsers } from './redux/onlienUserSlice';
@@ -45,7 +45,6 @@ function App() {
       })
       socket.on("getOnlineUsers", (user) => {
         dispatch(setOnlienUsers(user));
-        // console.log(user);
       })
       dispatch(setSocket(socket));
       return () => socket.close();
