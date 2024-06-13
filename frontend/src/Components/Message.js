@@ -13,7 +13,6 @@ import toast from 'react-hot-toast';
 function Message() {
   const dispatch = useDispatch();
   const attachmentRef = useRef();
-  const [attachmentFile, setAttachmentFile] = useState();
   const [loading, setLoading] = useState(true);
   const [chatLoading, setChatLoading] = useState(true);
   const { socket } = useSelector(store => store.socket);
@@ -189,13 +188,14 @@ function Message() {
               </div>
             }
             <div className="send-msg-box">
-              <form onSubmit={msgSubmitHandler}>
+              <form onSubmit={msgSubmitHandler} autocomplete="off">
                 <input
                   type="text"
                   placeholder='message...'
                   name='message'
                   onChange={messageInputHandler}
                   value={message}
+                  readOnly={!loading}
                 />
                 <div id='message-attachment'>
                   <FiPaperclip onClick={attachmentHandler} />
@@ -206,6 +206,8 @@ function Message() {
                     ref={attachmentRef}
                     style={{ display: 'none' }}
                     onChange={attachmentChangeHandler}
+                    disabled={!loading}
+                    autocomplete="off"
                   />
                 </div>
                 <button type="submit">

@@ -16,8 +16,18 @@ function UserListCard({ user }) {
                 }
             </div>
             <div className='user-details'>
-                <h3>{user.name}</h3>
-                <p>last message</p>
+                {user.name.length < 18
+                    ?
+                    <h3>{user.name}</h3>
+                    :
+                    <h3>{user.name.substring(0, 18)}</h3>
+                }
+                {isOnline(user._id)
+                    ?
+                    <p>Online</p>
+                    :
+                    <p>last seen recently</p>
+                }
             </div>
         </div>
     );

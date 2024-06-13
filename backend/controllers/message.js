@@ -116,7 +116,7 @@ exports.sendAttachment = async (req, res) => {
         }
         let fileType = file.name.split('.');
         fileType = (fileType[fileType.length - 1]).toString();
-        const supportedFileType = ['jpg', 'jpeg', 'png', 'mp3', 'mp4', 'pdf'];
+        const supportedFileType = ['jpg', 'jpeg', 'png', 'mp3', 'mp4'];
 
         if (!supportedFileType.includes(fileType)) {
             return res.status(404).json({
@@ -131,8 +131,6 @@ exports.sendAttachment = async (req, res) => {
             incomingFileType = "audio"
         } else if (fileType === 'mp4') {
             incomingFileType = "video";
-        } else if (fileType === 'pdf') {
-            incomingFileType = 'pdf';
         }
 
         if (file.size / (1024 * 1024) >= 10) {
